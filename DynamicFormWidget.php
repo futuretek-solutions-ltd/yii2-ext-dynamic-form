@@ -1,6 +1,7 @@
 <?php
 namespace futuretek\form\dynamicform;
 
+use futuretek\shared\dom\AdvancedHtmlDom;
 use Yii;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\CssSelector\CssSelector;
@@ -68,8 +69,6 @@ class DynamicFormWidget extends \yii\base\Widget
      * @var string
      */
     public $widgetItem;
-
-
 
     /**
      * @var string
@@ -236,13 +235,11 @@ class DynamicFormWidget extends \yii\base\Widget
     public function run()
     {
         $content = ob_get_clean();
-        $crawler = new Crawler();
-        $crawler->addHTMLContent($content, \Yii::$app->charset);
-        $results = $crawler->filter($this->widgetItem);
-        $document = new \DOMDocument('1.0', \Yii::$app->charset);
-        $document->appendChild($document->importNode($results->first()->getNode(0), true));
-        $this->_options['template'] = trim($document->saveHTML());
+        /** @var AdvancedHtmlDom $dom */
+        $dom = \futuretek\shared\dom\str_get_html($content);
+        $this->_options['template'] = trim($dom->find($this->widgetItem)->html());
 
+        /** @noinspection NotOptimalIfConditionsInspection */
         if (!$this->_options['preloadedModels'] && $this->model->isNewRecord && array_key_exists('min', $this->_options) && $this->_options['min'] === 0) {
             $content = $this->removeItems($content);
         }
@@ -264,25 +261,13 @@ class DynamicFormWidget extends \yii\base\Widget
      * Clear HTML widgetBody. Required to work with zero or more items.
      *
      * @param string $content
+     * @return string
      */
     private function removeItems($content)
     {
-        $document = new \DOMDocument('1.0', \Yii::$app->charset);
-        $crawler = new Crawler();
-        $crawler->addHTMLContent($content, \Yii::$app->charset);
-        $root = $document->appendChild($document->createElement('_root'));
-        $crawler->rewind();
-        $root->appendChild($document->importNode($crawler->current(), true));
-        $domxpath = new \DOMXPath($document);
-        $crawlerInverse = $domxpath->query(CssSelector::toXPath($this->widgetItem));
-
-        foreach ($crawlerInverse as $elementToRemove) {
-            $parent = $elementToRemove->parentNode;
-            $parent->removeChild($elementToRemove);
-        }
-
-        $crawler->clear();
-        $crawler->add($document);
-        return $crawler->filter('body')->eq(0)->html();
+        /** @var AdvancedHtmlDom $dom */
+        $dom = \futuretek\shared\dom\str_get_html($content);
+        $dom->find($this->widgetItem)->remove();
+        return (string) $dom;
     }
 }

@@ -28,8 +28,7 @@
     "require": {
         "php": ">=5.5.0",
         "yiisoft/yii2": "2.0.*",
-        "symfony/dom-crawler": "~2.6.6",
-        "symfony/css-selector": "~2.6.6"
+        "futuretek/advanced-html-dom": "1.0.*"
     },
     "repositories": [
         {
