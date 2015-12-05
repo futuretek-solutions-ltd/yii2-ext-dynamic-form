@@ -13,7 +13,7 @@ class DynamicFormAsset extends \yii\web\AssetBundle
      */
     public function init()
     {
-        $this->sourcePath = '@vendor/futuretek/yii2-dynamic-form/assets';
+        $this->sourcePath = '@vendor/futuretek/yii2-dynamicform/assets';
         $this->depends = [
             'yii\web\JqueryAsset',
             'yii\widgets\ActiveFormAsset'
