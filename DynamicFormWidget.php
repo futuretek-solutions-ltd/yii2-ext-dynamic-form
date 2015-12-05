@@ -236,7 +236,7 @@ class DynamicFormWidget extends \yii\base\Widget
     {
         $content = ob_get_clean();
         /** @var AdvancedHtmlDom $dom */
-        $dom = AdvancedHtmlDom::str_get_html($content);
+        $dom = AdvancedHtmlDom::str_get_html('<html><head><meta charset="utf-8"/></head><body>'.$content.'</body></html>');
         $this->_options['template'] = trim($dom->find($this->widgetItem)->html());
 
         /** @noinspection NotOptimalIfConditionsInspection */
@@ -266,8 +266,8 @@ class DynamicFormWidget extends \yii\base\Widget
     private function removeItems($content)
     {
         /** @var AdvancedHtmlDom $dom */
-        $dom = \futuretek\shared\dom\str_get_html($content);
-        $dom->find($this->widgetItem)->remove();
+        $dom = AdvancedHtmlDom::str_get_html('<html><head><meta charset="utf-8"/></head><body>'.$content.'</body></html>');
+        $dom = $dom->find($this->widgetItem)->remove();
         return (string) $dom;
     }
 }
