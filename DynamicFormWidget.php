@@ -236,7 +236,7 @@ class DynamicFormWidget extends \yii\base\Widget
     {
         $content = ob_get_clean();
         /** @var AdvancedHtmlDom $dom */
-        $dom = \futuretek\shared\dom\str_get_html($content);
+        $dom = AdvancedHtmlDom::str_get_html($content);
         $this->_options['template'] = trim($dom->find($this->widgetItem)->html());
 
         /** @noinspection NotOptimalIfConditionsInspection */
