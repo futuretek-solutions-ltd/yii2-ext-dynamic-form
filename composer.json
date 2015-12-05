@@ -1,0 +1,50 @@
+{
+    "name": "futuretek/yii2-dynamicform",
+    "description": "It is widget to yii2 framework to clone form elements in a nested manner, maintaining accessibility.",
+    "keywords": [
+        "extension",
+        "model",
+        "yii",
+        "widget",
+        "copy DOM element",
+        "dynamic form"
+    ],
+    "type": "yii2-extension",
+    "license": "proprietary",
+    "homepage": "http://www.futuretek.cz/",
+    "authors": [
+        {
+            "name": "Petr Leo Compel",
+            "email": "petr.compel@futuretek.cz",
+            "homepage": "http://www.futuretek.cz",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://jira.futuretek.cz/browse/YII",
+        "wiki": "https://doc.futuretek.cz/display/YII",
+        "source": "https://git.futuretek.cz/projects/YII"
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "2.0.*",
+        "symfony/dom-crawler": "~2.6.6",
+        "symfony/css-selector": "~2.6.6"
+    },
+    "repositories": [
+        {
+            "url": "http://composer.futuretek.cz",
+            "type": "composer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "futuretek\\form\\dynamicform\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
