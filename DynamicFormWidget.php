@@ -237,7 +237,7 @@ class DynamicFormWidget extends \yii\base\Widget
         $content = ob_get_clean();
         /** @var AdvancedHtmlDom $dom */
         $dom = AdvancedHtmlDom::str_get_html('<html><head><meta charset="utf-8"/></head><body>'.$content.'</body></html>');
-        $this->_options['template'] = trim($dom->find($this->widgetItem)->html());
+        $this->_options['template'] = trim($dom->find($this->widgetItem, 0)->html());
 
         /** @noinspection NotOptimalIfConditionsInspection */
         if (!$this->_options['preloadedModels'] && $this->model->isNewRecord && array_key_exists('min', $this->_options) && $this->_options['min'] === 0) {
