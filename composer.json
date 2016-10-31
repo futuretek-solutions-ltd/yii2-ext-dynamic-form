@@ -23,27 +23,22 @@
     "support": {
         "issues": "https://jira.futuretek.cz/browse/YII",
         "wiki": "https://doc.futuretek.cz/display/YII",
-        "source": "https://git.futuretek.cz/projects/YII"
+        "source": "https://git.futuretek.cz/projects/YII/repos/ext-dynamic-form/browse"
     },
     "require": {
         "php": ">=5.5.0",
-        "yiisoft/yii2": "2.0.*",
-        "futuretek/advanced-html-dom": "1.0.*"
+        "yiisoft/yii2": "^2.0.0",
+        "futuretek/advanced-html-dom": "^1.0.0"
     },
     "repositories": [
         {
-            "url": "http://composer.futuretek.cz",
+            "url": "https://composer.futuretek.cz",
             "type": "composer"
         }
     ],
     "autoload": {
         "psr-4": {
             "futuretek\\form\\dynamicform\\": ""
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
         }
     }
 }
