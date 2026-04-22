@@ -21,9 +21,8 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
-        "yiisoft/yii2": "^2.0.0",
-        "futuretek/advanced-html-dom": "^1.0.0"
+        "php": ">=7.4.0",
+        "futuretek/advanced-html-dom": "^1.2.0"
     },
     "autoload": {
         "psr-4": {
